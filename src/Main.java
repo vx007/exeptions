@@ -9,12 +9,12 @@ public class Main {
     }
 
     public static boolean check(String login, String password, String confirmPassword) {
-        final String regex= "[^A-Za-z0-9_.]";
+        final String regex= "[A-Za-z0-9_.]+";
         try {
-            if (login.length() >= 20 || login.matches(regex)) {
+            if (login.length() >= 20 || !login.matches(regex)) {
                 throw new WrongLoginException("Неправильный логин");
             }
-            if (password.length() >= 20 || password.matches(regex)){
+            if (password.length() >= 20 || !password.matches(regex)){
                 throw new WrongPasswordException("Неправильный пароль");
             }
             if (!password.equals(confirmPassword)){
